@@ -16,6 +16,7 @@ POST	/tweet/addCommentaire	controllers.Tweets.addCommentaire()
 GET        /moretweets                                       controllers.Application.listTweetsFromTo(userconnect: String ?= "",From: Int,To: Int)
 GET        /tweetsInit                                      controllers.Application.listTweetsInit(userconnect: String ?= "")
 GET		/CommentTweet										controllers.Application.listComment(IDtweet: Long )
+GET		/nbreTweet										controllers.Application.listTweetDb(count: String ?= "")
 
 # Authentication
 GET     /login                              controllers.Authentication.login()
@@ -27,6 +28,7 @@ GET		/inscription						controllers.Inscription.index()
 GET		/perso/:username								controllers.Pageperso.index(username)
 #Recherche
 GET		/search/:recherche						controllers.Profil.index(recherche)
+GET     /search      controllers.Application.users(term: String ?="")
 #Profil
 GET		/Profil/:username							controllers.Perso.index(username)
 GET		/persoMofi/:username 					controllers.Pageperso.modification(username)

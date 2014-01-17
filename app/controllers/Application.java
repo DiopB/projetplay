@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import controllers.Authentication.AuthenticatedUser;
@@ -76,6 +77,25 @@ public class Application extends Controller {
 	            
 	            return badRequest();
 	   }
+	  
+	  public static Result listTweetDb(String userconnect)
+	    {
+		 		
+		 		String username = request().queryString().get("userconnect")[0];
+	           
+		 		System.out.println(username);
+	            
+	           // if(request().accepts("application/json"))
+	           // {
+	            	//List<Tweet> tweets = Tweet.ajoutTweetAmis(username);
+	            	int count=Ebean.find(Tweet.class).where().eq("userconnect", username).findList().size();
+	            	
+	            		 return ok(Json.toJson(count));
+	            		            	 
+	          //  }
+	            
+	          //  return badRequest();
+	    }
 
 	 
 	 public static Result  listComment(Long id){
@@ -88,5 +108,14 @@ public class Application extends Controller {
         	 return badRequest();
          }
 	}
+	   public static Result users(String term){
+
+           //String termentre = request().queryString().get("term")[0];
+
+           List<Utilisateur> users = Utilisateur.find(term);
+
+           return ok(Json.toJson(users));
+
+   }
 
 }

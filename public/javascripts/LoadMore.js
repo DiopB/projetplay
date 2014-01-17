@@ -2,19 +2,15 @@ $(document).ready(function() {
 	bindEventsOnReady();
 });
 
+
+
+
+
 function bindEventsOnReady() 
 {
 
 	var username;
-//	var tailleTweetdebut=$(".box_1").children().length;
-//	if(tailleTweetdebut==0){
-//		$("#Loadmore").remove();
-//		$(".errormessage").append('<b> Vous n\'avez pas encore Tweeter!!</b>');
-//		
-//	}else{
-//		if(tailleTweetdebut>0||tailleTweetdebut)
-//		$(".errormessage").remove();
-//	}
+
 	$('#Loadmore').click(function() {
 		username=$(this);
 		LoadMore(username);
@@ -118,18 +114,40 @@ function BindInitailTweets(){
 							{
 						if(data.length != 0){
 							if(val.user.images !=""){
-							var html = '<div class="box_2"> <img width="100" height="100" src="/assets/bootstrap/img/aa.jpeg" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
+								var myDate = new Date( val.creationDate );
+						        var strDate = "";
+						        strDate += myDate.getUTCDate()+"/"+(myDate.getMonth()+1)+"/"+myDate.getFullYear();
+						        strDate += " A "+myDate.getHours()+":"+myDate.getMinutes();
+							var html = '<div class="box_2"> <img width="100" height="100" src="/assets/bootstrap/img/aa.jpeg" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+strDate+'</h5><br/><p>';
 							}else{
-							var html = '<div class="box_2"> <img width="100" height="100" src="@routes.Pageperso.getImage('+val.user.images.idimage+')" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
+							var html = '<div class="box_2"> <img width="100" height="100" src="@routes.Pageperso.getImage('+val.user.images.idimage+')" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+strDate+'</h5><br/><p>';
 							}
 							if(val.sujet != "") {
 							
-								html = html +val.label+'<a href="@routes.Sujets.affSujet('+val.sujet+')">#'+val.sujet+'</a>'+val.Taguser+'<br/><br />';
-							
+								html = html +val.label+'<a href="@routes.Sujets.affSujet('+val.sujet+')">#'+val.sujet+'</a><br/><br />';
+								if(val.Taguser !=null){
+									
+									html =html +" @"+val.Taguser+'<br />';
+									
+								}else{
+									
+									html=html;
+								}
+								
 							}else{
 							
-								html = html + val.label+" "+val.Taguser+'<br /><br />';
+								html = html + val.label+'<br /><br />';
+								
+								if(val.Taguser !=null){
+									
+									html =html +" @"+val.Taguser+'<br />';
+									
+								}else{
+									
+									html=html;
 								}
+							}
+							
 						
 							html = html + '<div class="box_comm'+val.id+'  ">'
 		

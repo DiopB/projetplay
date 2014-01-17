@@ -84,5 +84,8 @@ public class Utilisateur extends Model {
               .eq("password", passwordhashe)
               .findUnique();
       }
+	public static List<Utilisateur> find(String term){
+        return find.where().like("username", "%"+term+"%").findList();
+}
 
 }

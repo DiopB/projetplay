@@ -14,8 +14,12 @@
 		<link href="@routes.Assets.at("/bootstrap/fonts/stylesheet.css")" rel="stylesheet" type="text/css" />
 		<!--slidercss-->
 		<link rel="stylesheet" href="@routes.Assets.at("/bootstrap/css/basic-jquery-slider.css")" />
+		  <link rel="stylesheet" href="@routes.Assets.at("/bootstrap/css/jqury-ui.css")">
 		<script src="@routes.Assets.at("/bootstrap/js/jquery-1.6.2.min.js")" type="text/javascript"  language="javascript"></script>
-		<script src="/assets/javascripts/jquery-1.7.1.min.js" type="text/javascript" language="javascript"></script> 
+		<script src="/assets/javascripts/jquery-1.7.1.min.js" type="text/javascript" language="javascript"></script>
+		 <script src="@routes.Assets.at("javascripts/jquery-1.9.1.js")" type="text/javascript"></script> 
+
+                 <script src="@routes.Assets.at("javascripts/jquery-ui.js")" type="text/javascript"></script>  
 		<script src="@routes.Assets.at("/bootstrap/js/basic-jquery-slider.js")" type="text/javascript" language="javascript"></script>
 		<script type="text/javascript" src="@routes.Assets.at("/bootstrap/js/custom.js")" language="javascript"></script>
 		<script type="text/javascript" src="@routes.Assets.at("/bootstrap/js/input.js")" language="javascript"></script>
@@ -38,7 +42,45 @@
 		var search = document.recherche.champ.value;
 		location.href="/search/"+search;
 		}
-		</SCRIPT>     
+		</SCRIPT>  
+		<script type="text/javascript" language="javascript">
+
+
+                        $(document).ready(function () {
+
+                            $("#autocomp").autocomplete({
+
+                                source: function(request,response) {
+
+                                    $.ajax({
+
+                                        url: "/search",
+
+                                        dataType: "json",
+
+                                        data: { term: request.term },
+
+                                        success: function (data) {
+
+                                            response($.map(data, function (item) {
+
+                                                return { label: item.username, value:item.username };
+
+                                            }))
+                                        }
+
+                                    })
+                                },
+
+                                    messages: {
+
+                                        noResults: "", results: ""
+
+                                    }
+                            });
+
+                        })
+        </script>        
 		<script type="text/javascript" src="bootstrap/js/pie.js" language="javascript"></script>
 		<style type="text/css">
 		ul.bjqs h1, ol.bjqs-markers li a {
@@ -57,7 +99,7 @@
 
           <div class="search">
 		  <form name="recherche">
-                    	<input type="text" name="champ" placeholder="Recherche">               	
+                    	<input type="text" name="champ" placeholder="Recherche" id="autocomp">               	
                     	<input type="button" id="chercher" onClick="controle(recherche)">
           </form>   
 		  </div>
