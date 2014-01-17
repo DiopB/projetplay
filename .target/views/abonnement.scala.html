@@ -38,11 +38,9 @@ profutilisateur: Utilisateur
 			@if(userconnect.images!=null){
 					<tr><td width="100" height="100" ><img src="@routes.Pageperso.getImage(userconnect.images.idimage)" alt="" title="" width="100" height="100"/></td></tr>
 			}else{
-					@if(userconnect.sexe.equals("female")){
+					
 							<tr><td width="100" height="100" ><img src="@routes.Assets.at("bootstrap/img/aa.jpeg")" alt=""  width="100" height="100"/></td></tr>
-					}else{
-							<tr><td width="100" height="100" ><img src="@routes.Assets.at("bootstrap/img/aaa.jpeg")" alt=""  width="100" height="100"/></td></tr>
-							}
+					
 						
 			}
 			<tr><td id="name_bien">@message de: @profutilisateur.username</td></tr>

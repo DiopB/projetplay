@@ -64,10 +64,11 @@ sendImage:Form[Image]
 					<td>@form(action=routes.Pageperso.receiveImage(utilisateur.username), 'enctype -> "multipart/form-data") {
   
 
-					      @inputFile(sendImage("Charger la photo"))
+					      @inputFile(sendImage("pic"))
 					
 					      <button>Envoyer</button>
-					    }</td></tr>
+					    }
+					   </td></tr>
 					</table>
 					</div> 
 					</div>

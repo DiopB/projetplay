@@ -630,6 +630,15 @@ height:19px;
 	font-size:15px;
 	margin-left:100px;
 }
+#main_contant .box_1 .box_comm141, #main_contant .box_2 .box_comm141, #main_contant .box_3 .box_comm141 {
+	
+	width:424px;
+	line-height:26px;
+	color:#555555;
+	font-family:"myriad Pro";
+	font-size:15px;
+	margin-left:100px;
+}
 #main_contant .box_1 a, #main_contant .box_2 a, #main_contant .box_3 a {
 }
 #main_contant .box_1 a, #main_contant .box_2 a, #main_contant .box_3 a {

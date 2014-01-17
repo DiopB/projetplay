@@ -48,8 +48,12 @@ function LoadMore(username){
 				{				
 					$.each(data, function(key, val) 
 						{
-						var html = '<div class="box_2"> <img src="/assets/bootstrap/img/box_2.png" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
 						
+						if(val.user.images !=""){
+							var html = '<div class="box_2"> <img width="100" height="100" src="/assets/bootstrap/img/aa.jpeg" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
+							}else{
+							var html = '<div class="box_2"> <img width="100" height="100" src="@routes.Pageperso.getImage('+val.user.images.idimage+')" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
+						}
 						if(val.sujet != "") {
 							
 							html = html +val.label+'<a href="@routes.Sujets.affSujet('+val.sujet+')">#'+val.sujet+'</a>'+val.Taguser+'<br/><br />';
@@ -76,7 +80,7 @@ function LoadMore(username){
 									}
 									$.each(data2, function(key2, val2) 
 											{
-												var html3 = "<b>" + val2.label + "</b> Ecrie par : <b>" + val2.user.username + "</b> Le "+val2.creationDate+'<br/>';
+												var html3 = "<b>" + val2.user.username + "</b>  : <b>" + val2.label + "</b> <br/>";
 												console.log(val2.user.username + " : " + val2.label + ":" + val2.tweet.id);
 												$(".box_comm"+val2.tweet.id).append(html3);
 											});						
@@ -113,8 +117,11 @@ function BindInitailTweets(){
 					$.each(data, function(key, val) 
 							{
 						if(data.length != 0){
-							var html = '<div class="box_2"> <img src="/assets/bootstrap/img/box_2.png" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
-						
+							if(val.user.images !=""){
+							var html = '<div class="box_2"> <img width="100" height="100" src="/assets/bootstrap/img/aa.jpeg" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
+							}else{
+							var html = '<div class="box_2"> <img width="100" height="100" src="@routes.Pageperso.getImage('+val.user.images.idimage+')" alt=""  class="main_img_2" /><div class="text"'+val.id+'><h6>'+val.user.username+'</h6><br/><h5>'+val.creationDate+'</h5><br/><p>';
+							}
 							if(val.sujet != "") {
 							
 								html = html +val.label+'<a href="@routes.Sujets.affSujet('+val.sujet+')">#'+val.sujet+'</a>'+val.Taguser+'<br/><br />';
@@ -141,7 +148,7 @@ function BindInitailTweets(){
 									}
 									$.each(data2, function(key2, val2) 
 											{
-												var html3 = "<b>" + val2.label + "</b> Ecrit par : <b>" + val2.user.username + "</b> Le "+val2.creationDate+'<br/>';
+												var html3 = "<b>" + val2.user.username + "</b>  : <b>" + val2.label + "</b> <br/>";
 												console.log(val2.user.username + " : " + val2.label + ":" + val2.tweet.id);
 												$(".box_comm"+val2.tweet.id).prepend(html3);
 											});						
